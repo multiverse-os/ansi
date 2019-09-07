@@ -1,7 +1,8 @@
 package style
 
 const (
-	prefix = "\x1b["
+	escape = "\x1b"
+	prefix = "["
 	suffix = "m"
 )
 
@@ -30,7 +31,7 @@ const (
 	CrossOut = Strikethrough
 )
 
-func Sequence(code int) string { return prefix + strconv.Itoa(code) + suffix }
+func Sequence(code int) string { return escape + prefix + strconv.Itoa(code) + suffix }
 
 func On() attribute  { return Sequence(s.Code()) }
 func Off() attribute { return Sequence((s.Code() + 20)) }
