@@ -1,55 +1,5 @@
 package main
 
-const (
-	escape = "\x1b"
-	prefix = "["
-	suffix = "m"
-)
-
-func Sequence(code int) string { return escape + prefix + strconv.Itoa(code) + suffix }
-
-func Reset(text string) string         { return Reset.Sequence() + text }
-func ForegroundOff(text string) string { return ForegroundOff.Sequence() + text }
-func BackgroundOff(text string) string { return BackgroundOff.Sequence() + text }
-func StyleOff(text string) string      { return StyleOff.Sequence() + text }
-
-func Foreground(code Code, text string) string {
-	return Sequence(code.Int()) + text + Sequence(ColorOff.Int())
-}
-func BackgroundColor(code Code, text string) string {
-	return Sequence(code.Int()+10) + text + Sequence(ColorOff.Int()+10)
-}
-func Style(code Code, text string) string {
-	return Sequence(code.Int()) + text + Sequence(code.Int()+20)
-}
-
-func (c Code) Color(text string) string {
-	switch code := c.Int(); {
-	case Reset.Int():
-		return Reset(text)
-	case (code >= 30 && code <= 37), (code >= 90 && code <= 97):
-		return Color(c, text)
-	case ForegroundOff.Int():
-		return ForegroundOff(text)
-	case BackgroundOff.Int():
-		return BackgroundOff(text)
-	case (code >= 40 && code <= 47), (code >= 100 && code <= 107):
-		return Background(c, text)
-	default:
-		return text
-	}
-}
-func (c Code) Format(text string) string {
-	switch code := c.Int(); {
-	case (code >= 1 && code <= 9):
-		Style(c, text)
-	case StyleOff.Int():
-		StyleOff(text)
-	default:
-		return c.Color(text)
-	}
-}
-
 type Code int
 
 func (c Code) Int() string { return int(c) }
@@ -123,3 +73,45 @@ const (
 	Hide     = Conceal
 	CrossOut = Strikethrough
 )
+
+func Reset(text string) string         { return Reset.Sequence() + text }
+func ForegroundOff(text string) string { return ForegroundOff.Sequence() + text }
+func BackgroundOff(text string) string { return BackgroundOff.Sequence() + text }
+func StyleOff(text string) string      { return StyleOff.Sequence() + text }
+
+func Foreground(code Code, text string) string {
+	return Sequence(code.Int()) + text + Sequence(ColorOff.Int())
+}
+func Background(code Code, text string) string {
+	return Sequence(code.Int()+10) + text + Sequence(ColorOff.Int()+10)
+}
+func Style(code Code, text string) string {
+	return Sequence(code.Int()) + text + Sequence(code.Int()+20)
+}
+
+func (c Code) Color(text string) string {
+	switch code := c.Int(); {
+	case Reset.Int():
+		return Reset(text)
+	case (code >= 30 && code <= 37), (code >= 90 && code <= 97):
+		return Color(c, text)
+	case ForegroundOff.Int():
+		return ForegroundOff(text)
+	case BackgroundOff.Int():
+		return BackgroundOff(text)
+	case (code >= 40 && code <= 47), (code >= 100 && code <= 107):
+		return Background(c, text)
+	default:
+		return text
+	}
+}
+func (c Code) Format(text string) string {
+	switch code := c.Int(); {
+	case (code >= 1 && code <= 9):
+		Style(c, text)
+	case StyleOff.Int():
+		StyleOff(text)
+	default:
+		return c.Color(text)
+	}
+}
