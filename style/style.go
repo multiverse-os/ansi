@@ -10,22 +10,34 @@ const (
 )
 
 const (
-	reset = 0
+	RESET = 0
 	// ANSI Styles
-	bold            = 1
-	dim             = 2 // Decreased intensity
-	italic          = 3 // Not widely support, sometimes inverse.
-	underline       = 4
-	slowBlink       = 5 // Less than 150 times per minute
-	fastBlink       = 6 // Over 150 times per minute
-	inverse         = 7 // Swaps fg and bg colors
-	conceal         = 8 // Not widely supported
-	strikethrough   = 9 // Crossed-out
-	defaultFont     = 10
-	doubleUnderline = 21
-	framed          = 51
-	encircle        = 52
-	overline        = 53
+	BOLD             = 1
+	DIM              = 2 // Decreased intensity
+	ITALIC           = 3 // Not widely support, sometimes inverse.
+	UNDERLINE        = 4
+	SLOW_BLINK       = 5 // Less than 150 times per minute
+	FAST_BLINK       = 6 // Over 150 times per minute
+	INVERSE          = 7 // Swaps fg and bg colors
+	CONCEAL          = 8 // Not widely supported
+	STRIKETHROUGH    = 9 // Crossed-out
+	DEFAULT_FONT     = 10
+	DOUBLE_UNDERLINE = 21
+	FRAMED           = 51
+	ENCIRCLE         = 52
+	OVERLINE         = 53
+)
+
+// Aliasing
+const (
+	STRONG      = BOLD
+	EMPHASIS    = ITALIC
+	THIN        = DIM
+	CROSSOUT    = STRIKETHROUGH
+	BLINK       = SLOW_BLINK
+	RAPID_BLINK = FAST_BLINK
+	REVERSE     = INVERSE
+	HIDE        = CONCEAL
 )
 
 func Off(code int) int {
@@ -41,27 +53,29 @@ func Off(code int) int {
 
 func Sequence(code int) string          { return prefix + strconv.Itoa(code) + suffix }
 func Reset() string                     { return Sequence(reset) }
+func Open(code int) string              { return Sequence(code) }
+func Close(code int) string             { return Sequence(Off(code)) }
 func Text(code int, text string) string { return Sequence(code) + text + Sequence(Off(code)) }
 
 // Style Text
 ///////////////////////////////////////////////////////////////////////////////
-func Strong(text string) string        { return Text(bold, text) }
-func Bold(text string) string          { return Text(bold, text) }
-func Italic(text string) string        { return Text(italic, text) }
-func Emphasis(text string) string      { return Text(italic, text) }
-func Dim(text string) string           { return Text(dim, text) }
-func Thin(text string) string          { return Text(dim, text) }
-func Underline(text string) string     { return Text(underline, text) }
-func Strikethrough(text string) string { return Text(strikethrough, text) }
-func Crossout(text string) string      { return Text(strikethrough, text) }
-func Blink(text string) string         { return Text(slowBlink, text) }
-func SlowBlink(text string) string     { return Text(slowBlink, text) }
-func FastBlink(text string) string     { return Text(fastBlink, text) }
-func RapidBlink(text string) string    { return Text(fastBlink, text) }
-func Inverse(text string) string       { return Text(inverse, text) }
-func Reverse(text string) string       { return Text(inverse, text) }
-func Conceal(text string) string       { return Text(conceal, text) }
-func Hide(text string) string          { return Text(conceal, text) }
-func Framed(text string) string        { return Text(framed, text) }
-func Encircle(text string) string      { return Text(encircle, text) }
-func Overline(text string) string      { return Text(overline, text) }
+func Strong(text string) string        { return Text(BOLD, text) }
+func Bold(text string) string          { return Text(BOLD, text) }
+func Italic(text string) string        { return Text(ITALIC, text) }
+func Emphasis(text string) string      { return Text(ITALIC, text) }
+func Dim(text string) string           { return Text(DIM, text) }
+func Thin(text string) string          { return Text(DIM, text) }
+func Underline(text string) string     { return Text(UNDERLINE, text) }
+func Strikethrough(text string) string { return Text(STRIKETHROUGH, text) }
+func Crossout(text string) string      { return Text(STRIKETHROUGH, text) }
+func Blink(text string) string         { return Text(SLOW_BLINK, text) }
+func SlowBlink(text string) string     { return Text(SLOW_BLINK, text) }
+func FastBlink(text string) string     { return Text(FAST_BLINK, text) }
+func RapidBlink(text string) string    { return Text(FAST_BLINK, text) }
+func Inverse(text string) string       { return Text(INVERSE, text) }
+func Reverse(text string) string       { return Text(INVERSE, text) }
+func Conceal(text string) string       { return Text(CONCEAL, text) }
+func Hide(text string) string          { return Text(CONCEAL, text) }
+func Framed(text string) string        { return Text(FRAMED, text) }
+func Encircle(text string) string      { return Text(ENCIRCLE, text) }
+func Overline(text string) string      { return Text(OVERLINE, text) }
