@@ -1,5 +1,7 @@
-package style
+package text
 
+// Style Text
+///////////////////////////////////////////////////////////////////////////////
 func Strong(text string) string        { return (Strong.On() + text + Strong.Off()) }
 func Bold(text string) string          { return (Bold.On() + text + Bold.Off()) }
 func Italic(text string) string        { return (Italic.On() + text + Italic.Off()) }
