@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	color "github.com/multiverse-os/cli/text/ansi/color"
+	color "github.com/multiverse-os/color"
 	style "github.com/multiverse-os/cli/text/ansi/style"
 )
 

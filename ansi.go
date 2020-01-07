@@ -3,8 +3,8 @@ package ansi
 import (
 	"strconv"
 
-	color "github.com/multiverse-os/text/ansi/color"
-	style "github.com/multiverse-os/text/ansi/style"
+	"github.com/multiverse-os/ansi/style"
+	"github.com/multiverse-os/color"
 )
 
 const (
