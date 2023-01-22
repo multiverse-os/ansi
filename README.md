@@ -17,8 +17,8 @@ package main
 import (
 	"fmt"
 
-	color "github.com/multiverse-os/cli/text/ansi/color"
-	style "github.com/multiverse-os/cli/text/ansi/style"
+	color "github.com/multiverse-os/ansi/color"
+	style "github.com/multiverse-os/ansi/style"
 )
 
 func main() {

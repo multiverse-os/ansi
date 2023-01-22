@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	ansi "../../../ansi"
+	ansi "github.com/multiverse-os/ansi"
 )
 
 func main() {

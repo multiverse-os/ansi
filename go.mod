@@ -1,3 +1,3 @@
-module github.com/multiverse-os/cli/terminal/ansi
+module github.com/multiverse-os/ansi
 
 go 1.19

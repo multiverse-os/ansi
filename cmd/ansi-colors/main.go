@@ -40,7 +40,7 @@ func main() {
 	fmt.Printf(" ANSI Style Options\n")
 	fmt.Printf(" +=====================+\n")
 	fmt.Printf("  %s  \n", style.Bold("Bold"))
-	fmt.Printf("  %s  \n", style.Dim("Dim"))
+	fmt.Printf("  %s  \n", style.Light("Light"))
 	fmt.Printf("  %s  \n", style.Italic("Italic"))
 	fmt.Printf("  %s  \n", style.Underline("Underline"))
 	fmt.Printf("  %s  \n", style.SlowBlink("Slow Blink"))
