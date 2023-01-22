@@ -29,7 +29,7 @@ const (
 	RESET = 0
 	// ANSI Styles
 	BOLD             = 1
-	DIM              = 2 // Decreased intensity
+	THIN             = 2 // Decreased intensity
 	ITALIC           = 3 // Not widely support, sometimes inverse.
 	UNDERLINE        = 4
 	SLOW_BLINK       = 5 // Less than 150 times per minute
@@ -48,7 +48,7 @@ const (
 const (
 	STRONG      = BOLD
 	EMPHASIS    = ITALIC
-	THIN        = DIM
+	LIGHT       = THIN
 	CROSSOUT    = STRIKETHROUGH
 	BLINK       = SLOW_BLINK
 	RAPID_BLINK = FAST_BLINK
@@ -74,13 +74,13 @@ func Close(code int) string             { return Sequence(Off(code)) }
 func Text(code int, text string) string { return Sequence(code) + text + Sequence(Off(code)) }
 
 // Style Text
-///////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 func Strong(text string) string        { return Text(BOLD, text) }
 func Bold(text string) string          { return Text(BOLD, text) }
 func Italic(text string) string        { return Text(ITALIC, text) }
 func Emphasis(text string) string      { return Text(ITALIC, text) }
-func Dim(text string) string           { return Text(DIM, text) }
-func Thin(text string) string          { return Text(DIM, text) }
+func Thin(text string) string          { return Text(THIN, text) }
+func Light(text string) string         { return Text(THIN, text) }
 func Underline(text string) string     { return Text(UNDERLINE, text) }
 func Strikethrough(text string) string { return Text(STRIKETHROUGH, text) }
 func Crossout(text string) string      { return Text(STRIKETHROUGH, text) }

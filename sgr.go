@@ -115,7 +115,7 @@ var (
 	overline        = sgr(53)
 
 	Bold            = func(text string) string { return bold + text + reset }
-	Light           = func(text string) string { return light + text + reset }
+	Thin            = func(text string) string { return light + text + reset }
 	Italic          = func(text string) string { return italic + text + reset }
 	Underline       = func(text string) string { return underline + text + reset }
 	SlowBlink       = func(text string) string { return slowBlink + text + reset }
@@ -153,6 +153,6 @@ var MaroonBg = RedBg
 var LightPurpleBg = LightMagentaBg
 var GrayBg = WhiteBg
 
-var Thin = Light
+var Light = Thin
 var Framed = Frame
 var Strikethrough = CrossOut
