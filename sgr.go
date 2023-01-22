@@ -153,7 +153,6 @@ var MaroonBg = RedBg
 var LightPurpleBg = LightMagentaBg
 var GrayBg = WhiteBg
 
-var Dim = Light
 var Thin = Light
 var Framed = Frame
 var Strikethrough = CrossOut
