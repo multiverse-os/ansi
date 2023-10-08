@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	color "github.com/multiverse-os/ansi/color"
+	color "github.com/multiverse-os/color"
 )
 
 func main() {
